@@ -33,7 +33,7 @@ const UserSchema = Schema(
             enum: ["ADMIN_PLATAFORM", "ADMIN_HOTEL", "USER"],
             default: "CLIENT",
         },
-        estado: {
+        status: {
             type: Boolean,
             default: true,
         },
