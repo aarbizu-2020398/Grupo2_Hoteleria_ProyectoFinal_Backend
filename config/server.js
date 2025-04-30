@@ -2,6 +2,7 @@ import express from "express"
 import cors from "cors"
 import helmet from "helmet"
 import morgan from "morgan"
+import authRoutes from "../src/auth/authRoutes.js"
 import { dbConnection } from "./mongo.js"
 
 
@@ -14,7 +15,7 @@ const middlewares = (app) =>{
 }
 
 const routes = (app) =>{
-    //
+    app.use("/Hotel/V1/auth", authRoutes)
 }
 
 const conectDB = async() =>{
@@ -33,7 +34,7 @@ export const initServer = async() =>{
     try {
         middlewares(app)
         conectDB()
-        //routes(app)
+        routes(app)
         app.listen(Port)
         console.log(`Server init in port ${Port}`)
     } catch (err) {
