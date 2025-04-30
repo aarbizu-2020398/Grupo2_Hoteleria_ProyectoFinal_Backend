@@ -3,6 +3,8 @@ import cors from "cors"
 import helmet from "helmet"
 import morgan from "morgan"
 import authRoutes from "../src/auth/authRoutes.js"
+import hotelRoutes from "../src/hotels/hotelRoutes.js"
+import roomsRoutes from "../src/rooms/roomsRoutes.js"
 import { dbConnection } from "./mongo.js"
 
 
@@ -16,6 +18,8 @@ const middlewares = (app) =>{
 
 const routes = (app) =>{
     app.use("/Hotel/V1/auth", authRoutes)
+    app.use("/Hotel/V1/Hotels", hotelRoutes)
+    app.use("/Hotel/V1/Rooms", roomsRoutes)
 }
 
 const conectDB = async() =>{

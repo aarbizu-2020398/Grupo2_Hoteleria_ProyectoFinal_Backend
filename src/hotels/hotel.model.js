@@ -16,11 +16,6 @@ const hotelSchema = Schema (
             type: String, 
             required: [true, "Categoty is required"]
         },
-        roomPrice: {
-            type: Number,
-            required: [true, "RoomPrice is required"]
-
-        },
         comfort: {
             type:String
         },
