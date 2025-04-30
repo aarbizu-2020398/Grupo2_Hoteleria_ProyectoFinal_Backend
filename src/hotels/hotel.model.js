@@ -22,9 +22,12 @@ const hotelSchema = Schema (
 
         },
         comfort: {
-            type:String,
+            type:String
         },
-
+        status:{
+            type: Boolean,
+            defualt: true
+        }
     },
     {
         timestamps: true, 
