@@ -2,13 +2,12 @@ import Hotel from "./hotel.model.js";
 
 export const registerHotel = async(req, res) =>{
     try {
-        const {nameHotel, address, category, roomPrice, comfort } = req.body
+        const {nameHotel, address, category, comfort } = req.body
 
         const newHotel = await Hotel.create({
             nameHotel: nameHotel,
             address: address,
             category: category,
-            roomPrice: roomPrice,
             comfort: comfort
         })
 

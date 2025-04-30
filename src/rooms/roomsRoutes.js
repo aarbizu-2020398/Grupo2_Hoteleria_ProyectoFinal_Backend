@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { addRoom, deleteRoom, updateRoom } from "./rooms.controller";
+import { addRoom, deleteRoom, updateRoom } from "./rooms.controller.js";
 
 
 const router = Router()
@@ -18,3 +18,5 @@ router.delete(
     "/deleteRoom/:id",
     deleteRoom
 )
+
+export default router

@@ -31,7 +31,7 @@ const UserSchema = Schema(
             type: String,
             required: true,
             enum: ["ADMIN_PLATAFORM", "ADMIN_HOTEL", "USER"],
-            default: "CLIENT",
+            default: "USER",
         },
         status: {
             type: Boolean,
@@ -43,11 +43,5 @@ const UserSchema = Schema(
         versionKey: false
     }
 );
-
-UserSchema.methods.toJSON = function () {
-    const { __v, password, _id, ...usuario } = this.toObject();
-    usuario.uid = _id;
-    return usuario;
-}
 
 export default model('User', UserSchema);

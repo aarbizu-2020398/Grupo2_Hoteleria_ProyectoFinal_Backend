@@ -1,5 +1,5 @@
-import Hotel from "../hotels/hotel.model";
-import Room from "./room.model";
+import Hotel from "../hotels/hotel.model.js";
+import Room from "./room.model.js";
 
 
 export const addRoom = async(req, res) =>{
@@ -10,14 +10,10 @@ export const addRoom = async(req, res) =>{
         const findHotel = await Hotel.findOne({nameHotel: data.hotel})
 
         const registRoom = await Room.create({
+            ...data,
             hotel: findHotel,
-            roomNumber: data.roomNumber,
-            floor: data.floor,
-            capacity: data.capacity,
-            type: data.type,
-            description: data.description,
-            priceNight: data.priceNight
         })
+        console.log(findHotel)
 
         return res.status(200).json({
             msg: "Cuarto añadido con exito!",
@@ -35,7 +31,7 @@ export const addRoom = async(req, res) =>{
 export const updateRoom = async(req, res) =>{
     try {
         const {id} = req.params
-        const {hotel, description, ...data}  = req.body
+        const {hotel, availability, ...data}  = req.body
 
         const findRoomEdit = await Room.findByIdAndUpdate(id, data, {new: true})
 
