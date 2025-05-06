@@ -12,24 +12,26 @@ const reservationSchema = Schema (
             ref: "Room",
             required: true 
         },
-        hotels: [{
-            hotel: {
-                type: Schema.Types.ObjectId,
-                ref: "Hotel", 
-                required: true 
-            }, 
-            nameHotel:{
-                type: String,
-                required: true
-            }
-
-        }], 
-
         checkInDate: {
-            type: String
+            type: Date,
+            require: true
         },
         checkOutDate: {
-            type: String
+            type: Date,
+            require: true
+        },
+        totalPrice:{
+            type: Number
+        },
+        guests:{
+            type: Number,
+            required: true,
+            min: 1 
+        },
+        status:{
+            type: String,
+            enum: ["Pending", "Confirmed", "Cancelled"],
+            default: "Pending"
         }
 },
 {

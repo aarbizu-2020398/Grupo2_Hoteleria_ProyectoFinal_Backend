@@ -5,6 +5,8 @@ import morgan from "morgan"
 import authRoutes from "../src/auth/authRoutes.js"
 import hotelRoutes from "../src/hotels/hotelRoutes.js"
 import roomsRoutes from "../src/rooms/roomsRoutes.js"
+import eventRoutes from "../src/events/eventRoutes.js"
+import resourcesRoutes from "../src/resources_Events/resourcesRoutes.js"
 import { dbConnection } from "./mongo.js"
 
 
@@ -20,6 +22,8 @@ const routes = (app) =>{
     app.use("/Hotel/V1/auth", authRoutes)
     app.use("/Hotel/V1/Hotels", hotelRoutes)
     app.use("/Hotel/V1/Rooms", roomsRoutes)
+    app.use("/Hotel/V1/Resources", resourcesRoutes)
+    app.use("/Hotel/V1/Events", eventRoutes)
 }
 
 const conectDB = async() =>{
