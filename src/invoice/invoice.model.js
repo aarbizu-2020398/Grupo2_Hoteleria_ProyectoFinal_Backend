@@ -1,37 +1,5 @@
 import { model, Schema } from "mongoose";
-/*
 
-const modelFactura = Schema({
-    invoiceEvent:{
-        type: Schema.Types.ObjectId,
-        ref: "Event",
-        required: true
-    },  
-    client:{
-        type: Schema.Types.ObjectId,
-        ref: "User"
-    },
-    date:{
-        type: Date,
-        default: Date.now
-    },
-    items:{
-
-    }
-     
-    total:{
-        type: Number
-    }
-    
-},
-    {
-        timeStamps: true,
-        versionKey: false
-    }
-)
-
-
-*/
 const Facture = Schema({  
     event: { 
         type: Schema.Types.ObjectId, 
