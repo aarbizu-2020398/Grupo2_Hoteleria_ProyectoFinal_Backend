@@ -1,0 +1,129 @@
+{
+  "info": {
+    "name": "Hotel Reports API",
+    "_postman_id": "12345678-abcd-efgh-ijkl-1234567890ab",
+    "description": "Colección para probar endpoints de reportes del Hotel",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Get Hotel Stats",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "authorization",
+            "value": "Bearer {{token}}",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "http://localhost:3000/Hotel/V1/Reports/hotel-stats?hotelId={{hotelId}}&startDate=2025-01-01&endDate=2025-12-31",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "Hotel",
+            "V1",
+            "Reports",
+            "hotel-stats"
+          ],
+          "query": [
+            {
+              "key": "hotelId",
+              "value": "{{hotelId}}"
+            },
+            {
+              "key": "startDate",
+              "value": "2025-01-01"
+            },
+            {
+              "key": "endDate",
+              "value": "2025-12-31"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Get Platform Stats",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "authorization",
+            "value": "Bearer {{adminToken}}",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "http://localhost:3000/Hotel/V1/Reports/platform-stats?startDate=2025-01-01&endDate=2025-12-31",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "Hotel",
+            "V1",
+            "Reports",
+            "platform-stats"
+          ],
+          "query": [
+            {
+              "key": "startDate",
+              "value": "2025-01-01"
+            },
+            {
+              "key": "endDate",
+              "value": "2025-12-31"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Generate Reservation Report",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "authorization",
+            "value": "Bearer {{token}}",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "http://localhost:3000/Hotel/V1/Reports/reservations?hotelId={{hotelId}}&startDate=2025-01-01&endDate=2025-12-31",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "Hotel",
+            "V1",
+            "Reports",
+            "reservations"
+          ],
+          "query": [
+            {
+              "key": "hotelId",
+              "value": "{{hotelId}}"
+            },
+            {
+              "key": "startDate",
+              "value": "2025-01-01"
+            },
+            {
+              "key": "endDate",
+              "value": "2025-12-31"
+            }
+          ]
+        }
+      }
+    }
+  ]
+}

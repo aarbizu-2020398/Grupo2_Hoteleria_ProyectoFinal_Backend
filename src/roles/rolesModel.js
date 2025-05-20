@@ -1,10 +1,10 @@
-import { model, Schema } from "mongoose";
+import { Schema, model } from "mongoose";
 
 const RolesModel = Schema({
-    role:{
+    role: {
         type: String,
-        require: [true, "Role Requerido"]
+        required: [true, "Role Requerido"]
     }
-})
+});
 
-export default model ("Role", RolesModel)
+export default model("Role", RolesModel);

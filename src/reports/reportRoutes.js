@@ -1,28 +1,25 @@
-const express = require('express');
-const router = express.Router();
-const reportController = require('../controllers/reportController');
-const authMiddleware = require('../middlewares/authMiddleware');
-const roleMiddleware = require('../middlewares/roleMiddleware');
+import { Router } from "express";
+import { getHotelStats, getPlatformStats, generateReservationReport } from "../reports/reportController.js";
+import { authenticate } from "../middlewares/authMiddleware.js";
+import { roleMiddleware } from "../middlewares/roleMiddleware.js";
 
+const router = Router();
 
-router.use(authMiddleware);
-
+router.use(authenticate);  // Proteger todas las rutas con autenticación
 
 router.get('/hotel-stats', 
-    roleMiddleware(['admin', 'hotel_admin']), 
-    reportController.getHotelStats
+  roleMiddleware(['admin', 'hotel_admin']), 
+  getHotelStats
 );
 
-a
 router.get('/platform-stats', 
-    roleMiddleware(['admin']), 
-    reportController.getPlatformStats
+  roleMiddleware(['admin']), 
+  getPlatformStats
 );
-
 
 router.get('/reservations', 
-    roleMiddleware(['admin', 'hotel_admin']), 
-    reportController.generateReservationReport
+  roleMiddleware(['admin', 'hotel_admin']), 
+  generateReservationReport
 );
 
-module.exports = router;
+export default router;

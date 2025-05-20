@@ -1,0 +1,279 @@
+{
+  "info": {
+    "name": "Proyecto Hotel Backend",
+    "_postman_id": "9c64b4ae-2d3d-4b25-9d1b-123456789abc",
+    "description": "Colección para probar endpoints principales del backend del proyecto hotel",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:3000/Hotel/V1"
+    },
+    {
+      "key": "token",
+      "value": ""
+    },
+    {
+      "key": "adminToken",
+      "value": ""
+    },
+    {
+      "key": "userId",
+      "value": ""
+    },
+    {
+      "key": "hotelId",
+      "value": ""
+    },
+    {
+      "key": "roomId",
+      "value": ""
+    },
+    {
+      "key": "eventId",
+      "value": ""
+    },
+    {
+      "key": "resourceId",
+      "value": ""
+    },
+    {
+      "key": "serviceId",
+      "value": ""
+    }
+  ],
+  "item": [
+    {
+      "name": "Auth - Register",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/auth/register",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "auth",
+            "register"
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"User Test\",\n  \"username\": \"user_test\",\n  \"email\": \"user@test.com\",\n  \"password\": \"Test1234!\",\n  \"phone\": \"12345678\"\n}"
+        }
+      }
+    },
+    {
+      "name": "Auth - Login",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/auth/login",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "auth",
+            "login"
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"email\": \"user@test.com\",\n  \"password\": \"Test1234!\"\n}"
+        }
+      }
+    },
+    {
+      "name": "Hotels - Create Hotel",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer {{adminToken}}"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/Hotels/RegisterHotel",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "Hotels",
+            "RegisterHotel"
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"nameHotel\": \"Hotel Prueba\",\n  \"address\": \"Calle Falsa 123\",\n  \"category\": \"5 estrellas\",\n  \"comfort\": \"Alta\"\n}"
+        }
+      }
+    },
+    {
+      "name": "Rooms - Add Room",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer {{adminToken}}"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/Rooms/AddRoom",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "Rooms",
+            "AddRoom"
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"hotel\": \"{{hotelId}}\",\n  \"roomNumber\": \"101\",\n  \"floor\": 1,\n  \"capacity\": \"2\",\n  \"type\": \"Doble\",\n  \"priceNight\": 100\n}"
+        }
+      }
+    },
+    {
+      "name": "Events - Create Event",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer {{adminToken}}"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/Events/newEvent",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "Events",
+            "newEvent"
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"nameEvent\": \"Conferencia\",\n  \"host\": \"{{userId}}\",\n  \"hotel\": \"{{hotelId}}\",\n  \"date\": \"2025-06-15T10:00:00.000Z\",\n  \"resources\": [],\n  \"services\": []\n}"
+        }
+      }
+    },
+    {
+      "name": "Resources - Add Resource",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer {{adminToken}}"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/Resources/newResource",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "Resources",
+            "newResource"
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"nameResource\": \"Proyector\",\n  \"description\": \"Proyector HD\",\n  \"price\": 50,\n  \"category\": \"Técnico\",\n  \"stock\": 10\n}"
+        }
+      }
+    },
+    {
+      "name": "Reservations - Create Reservation",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer {{token}}"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/Reservations",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "Reservations"
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"user\": \"{{userId}}\",\n  \"room\": \"{{roomId}}\",\n  \"checkInDate\": \"2025-06-01T14:00:00.000Z\",\n  \"checkOutDate\": \"2025-06-05T12:00:00.000Z\",\n  \"guests\": 2\n}"
+        }
+      }
+    },
+    {
+      "name": "Roles - Create Role",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer {{adminToken}}"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/Roles/addRole",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "Roles",
+            "addRole"
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"role\": \"hotel_admin\"\n}"
+        }
+      }
+    }
+  ]
+}
