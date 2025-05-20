@@ -22,7 +22,8 @@ const hotelSchema = Schema (
         status:{
             type: Boolean,
             defualt: true
-        }
+        },
+        
     },
     {
         timestamps: true, 

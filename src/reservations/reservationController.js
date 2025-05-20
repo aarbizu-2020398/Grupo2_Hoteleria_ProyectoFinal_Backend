@@ -1,5 +1,4 @@
 import Reservation from "./reservation.model";
-import Hotel from "../hotels/hotel.model";
 import Room from "../rooms/room.model";
 import User from "../users/user.model";
 
@@ -31,7 +30,7 @@ export const createReservation = async (req, res) => {
 };
 
 export const getAllReservations = async (req, res) => {
-    const query = {status: "Confirmed"};
+    const query = {status: "Confirmed"}
     try {
 
         const reservationList = await Reservation.find(query)
