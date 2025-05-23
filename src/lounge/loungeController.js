@@ -5,10 +5,13 @@ export const registerLounge = async (req, res) => {
     try {
         const data = req.body
         const findHotel = await Hotel.findOne({nameHotel: data.hotel})
+        
+        let pictureLounge = req.file ? req.file.filename : null
 
         const newLounge = await Lounge.create({
             ...data,
-            hotel: findHotel
+            hotel: findHotel,
+            media: pictureLounge
         })
 
         return res.status(200).json({
@@ -47,16 +50,53 @@ export const editLounge = async(req, res) =>{
     }
 }
 
-export const listLounges = async (req, res) =>{
+export const listLoungesByHotel = async (req, res) => {
+    try {
+        const { hotelName, desde = 0, limite = 50 } = req.query;
+        const query = { status: true };
+
+        const hotels = await Hotel.find({
+            name: { $regex: hotelName, $options: 'i' },
+            status: true
+        }).select('_id');
+
+        const hotelIds = hotels.map(hotel => hotel._id);
+        
+        const [total, lounges] = await Promise.all([
+            Lounge.countDocuments({ ...query, hotel: { $in: hotelIds } }),
+            Lounge.find({ ...query, hotel: { $in: hotelIds } })
+                .skip(Number(desde))
+                .limit(Number(limite))
+                .populate('hotel', 'name')
+        ]);
+
+        return res.status(200).json({
+            success: true,
+            msg: "Lounges encontrados con éxito!",
+            total,
+            lounges
+        });
+    } catch (err) {
+        return res.status(500).json({
+            success: false,
+            error: err.message
+        });
+    }
+}
+
+export const deleteLounge = async(req, res) =>{
     try {
         
-        const query = {status: true}
+        const {id} = req.params
 
-        const list = await Lounge.find(query)
+        await Lounge.findByIdAndUpdate(id, {status: false}, {new: true})
 
-        return res.status(200)
+        return res.status(200).json({
+            msg: "Salón eliminado con exito"
+        })
 
     } catch (err) {
+        console.error(err)
         return res.status(500).json({
             success: false,
             error: err.message

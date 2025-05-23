@@ -18,19 +18,17 @@ const modelLounge = new Schema({
         min: 500,
         required: true
     },
-    minHours:{
-        type: Number,
-        min: 2,
-        required: true
-    },
     statusActive:{
         type: String,
-        enum:["Active, Ocuppied"],
+        enum:["Active, Ocuppied, Pending"],
         defautl: "Active"
     },
     status:{
         type: Boolean,
         default: true
+    },
+    media: {
+        type: String
     }
 })
 

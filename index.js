@@ -1,5 +1,6 @@
 import { config } from "dotenv";
-import { initServer } from "./config/server.js"
+import { defaultAdmin, initServer } from "./config/server.js"
 
 config()
 initServer()
+defaultAdmin()

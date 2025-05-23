@@ -1,11 +1,13 @@
 import { Router } from "express";
-import { cancelEvent, confirmEvent, createEvent, getAllEvents, getEventById, updateEvent } from "./eventController.js";
+import { cancelEvent, confirmEvent, createEvent, getAllEvents, listEventsByUser, updateEvent } from "./eventController.js";
+import { valueJWT } from "../middlewares/valueJWT.js";
 
 
 const router = Router()
 
 router.post(
     '/newEvent',
+    valueJWT,
     createEvent
 )
 
@@ -29,9 +31,11 @@ router.get(
     getAllEvents
 )
 
+
 router.get(
-    '/eventById/:id',
-    getEventById
+    '/eventByUser',
+    valueJWT,
+    listEventsByUser
 )
 
 router.put(

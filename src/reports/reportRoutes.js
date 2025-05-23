@@ -1,28 +1,9 @@
-const express = require('express');
-const router = express.Router();
-const reportController = require('../controllers/reportController');
-const authMiddleware = require('../middlewares/authMiddleware');
-const roleMiddleware = require('../middlewares/roleMiddleware');
+import { Router } from 'express';
+import { getHotelStatistics, getRoomStatistics } from './reportController.js';
 
+const router = Router();
 
-router.use(authMiddleware);
+router.get('/hotels', getHotelStatistics);
+router.get('/rooms', getRoomStatistics);
 
-
-router.get('/hotel-stats', 
-    roleMiddleware(['admin', 'hotel_admin']), 
-    reportController.getHotelStats
-);
-
-a
-router.get('/platform-stats', 
-    roleMiddleware(['admin']), 
-    reportController.getPlatformStats
-);
-
-
-router.get('/reservations', 
-    roleMiddleware(['admin', 'hotel_admin']), 
-    reportController.generateReservationReport
-);
-
-module.exports = router;
+export default router;

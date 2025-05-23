@@ -7,9 +7,9 @@ const eventSchema = Schema(
             ref: "User",
             required: true
         },
-        hotel: {
+        lounge: {
             type: Schema.Types.ObjectId,
-            ref: "Hotel",
+            ref: "Lounge",
             required: true
         },
         nameEvent: {
@@ -18,6 +18,10 @@ const eventSchema = Schema(
         },
         date: {
             type: Date,
+            required: true
+        },
+        durationHours:{
+            type: Number,
             required: true
         },
         resources:[{
@@ -64,7 +68,8 @@ const eventSchema = Schema(
         }],
         pricing: {
             subtotalRecursos: Number,
-            subtotalServicios: Number
+            subtotalServicios: Number,
+            subtotalSalon: Number
         },
         status:{
             type: String,

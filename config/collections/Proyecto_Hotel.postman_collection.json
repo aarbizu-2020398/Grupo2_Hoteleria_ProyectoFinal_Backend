@@ -1,0 +1,679 @@
+{
+	"info": {
+		"_postman_id": "759011b3-194a-4fbd-ba94-4f321bbcd214",
+		"name": "Proyecto_Hotel",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "42566205"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Diego\",\r\n    \"username\": \"dgarcia\",\r\n    \"email\": \"dgarcia@g.com\",\r\n    \"password\":  \"12345678\",\r\n    \"phone\": \"12345678\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/Hotel/v1/auth/register",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"Hotel",
+								"v1",
+								"auth",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"dgarcia@g.com\",\r\n    \"username\": \"dgarcia\",\r\n    \"password\": \"12345678\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/Hotel/v1/auth/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"Hotel",
+								"v1",
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login With Admin Credentials",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"dgarcia@g.com\",\r\n    \"username\": \"dgarcia\",\r\n    \"password\": \"12345678\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/Hotel/v1/auth/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"Hotel",
+								"v1",
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Hoteles",
+			"item": [
+				{
+					"name": "Register Hotel",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nameHotel\": \"DulceAlegria\",\r\n    \"address\": \"Zona 1\",\r\n    \"category\": \"Lujoso\",\r\n    \"roomPrice\": 500,\r\n    \"comfort\": \"Almohadas de alta calidad\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/Hotel/V1/Hotels/RegisterHotel",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"Hotel",
+								"V1",
+								"Hotels",
+								"RegisterHotel"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Search Hotel",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/Hotel/V1/Hotels/searchHotels?sort=asc",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"Hotel",
+								"V1",
+								"Hotels",
+								"searchHotels"
+							],
+							"query": [
+								{
+									"key": "sort",
+									"value": "asc"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Resources",
+			"item": [
+				{
+					"name": "new Resources",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nameResource\": \"Buffet\",\r\n    \"description\": \"comida para  20 invitados\",\r\n    \"price\": 1500,\r\n    \"category\": \"Alimentos\",\r\n    \"stock\": 20\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/Hotel/V1/Resources/newResource",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"Hotel",
+								"V1",
+								"Resources",
+								"newResource"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "new Service",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nameService\": \"Cocineros\",\r\n    \"price\": 150,\r\n    \"unitType\": \"Hora\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/Hotel/V1/Resources/newService",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"Hotel",
+								"V1",
+								"Resources",
+								"newService"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "edit Resource",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"resource\": \"Comida\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/Hotel/V1/Resources/editResource/6812f62e3f332d045772b453",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"Hotel",
+								"V1",
+								"Resources",
+								"editResource",
+								"6812f62e3f332d045772b453"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "edit Service",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"typeServices\": \"Cocineros\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/Hotel/V1/Resources/editService/6812f6323f332d045772b455",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"Hotel",
+								"V1",
+								"Resources",
+								"editService",
+								"6812f6323f332d045772b455"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete Resource",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"resource\": \"Comida\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/Hotel/V1/Resources/deleteResource/6812f62e3f332d045772b453",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"Hotel",
+								"V1",
+								"Resources",
+								"deleteResource",
+								"6812f62e3f332d045772b453"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete Services",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"resource\": \"Comida\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/Hotel/V1/Resources/deleteService/6812f6323f332d045772b455",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"Hotel",
+								"V1",
+								"Resources",
+								"deleteService",
+								"6812f6323f332d045772b455"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Events",
+			"item": [
+				{
+					"name": "new Event",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"host\": \"Diego\",\r\n    \"hotel\": \"DulceAlegria\",\r\n    \"nameEvent\": \"Boda de X con Y\",\r\n    \"date\": \"2025-05-15\",\r\n    \"resources\":[\r\n            {\r\n            \"resource\": \"Buffet\",\r\n            \"quantity\":  2\r\n        }\r\n    ],\r\n    \"services\":[ {\r\n        \"service\":  \"Cocineros\",\r\n        \"quantity\": 5,\r\n        \"timeUsed\": 2\r\n    }]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/Hotel/V1/Events/newEvent",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"Hotel",
+								"V1",
+								"Events",
+								"newEvent"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "confirm Event",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nameEvent\": \"Boda de X con Y\",\r\n    \"date\": \"2025-05-15\",\r\n    \"resources\":[{\r\n        \"resource\": \"Cañonera\",\r\n        \"quantity\":  1\r\n    }],\r\n    \"services\":[ {\r\n        \"service\":  \"Meseros\",\r\n        \"quantity\": 5\r\n    }]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/Hotel/V1/Events/confirmEvent/6816d6d1ab4cd196989f3fa8",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"Hotel",
+								"V1",
+								"Events",
+								"confirmEvent",
+								"6816d6d1ab4cd196989f3fa8"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "cancel Event",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nameEvent\": \"Boda de X con Y\",\r\n    \"date\": \"2025-05-15\",\r\n    \"resources\":[{\r\n        \"resource\": \"Cañonera\",\r\n        \"quantity\":  1\r\n    }],\r\n    \"services\":[ {\r\n        \"service\":  \"Meseros\",\r\n        \"quantity\": 5\r\n    }]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/Hotel/V1/Events/cancelEvent/6816ab725f814545bcbcc59d",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"Hotel",
+								"V1",
+								"Events",
+								"cancelEvent",
+								"6816ab725f814545bcbcc59d"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "all Events",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/Hotel/V1/Events/allEvents",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"Hotel",
+								"V1",
+								"Events",
+								"allEvents"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "all Events Copy",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/Hotel/V1/Events/allEvents",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"Hotel",
+								"V1",
+								"Events",
+								"allEvents"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update Event",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"host\": \"Diego\",\r\n    \"hotel\": \"DulceAlegria\",\r\n    \"nameEvent\": \"Boda de X con Y\",\r\n    \"date\": \"2025-05-15\",\r\n    \"resources\":[\r\n            {\r\n                \"resource\": \"Cañonera\",\r\n                \"quantity\":  1\r\n            }\r\n    ],\r\n    \"services\":[ \r\n        {\r\n        \"service\":  \"Meseros\",\r\n        \"quantity\": 5\r\n        },\r\n        {\r\n        \"service\":  \"Cocineros\",\r\n        \"quantity\": 4\r\n        }\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/Hotel/V1/Events/editEvent/68165e5cc53593125ec62585",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"Hotel",
+								"V1",
+								"Events",
+								"editEvent",
+								"68165e5cc53593125ec62585"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Reports",
+			"item": [
+				{
+					"name": "Reports Hotels",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/Hotel/V1/Report/hotels",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"Hotel",
+								"V1",
+								"Report",
+								"hotels"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Reports Rooms",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/Hotel/V1/Report/hotels",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"Hotel",
+								"V1",
+								"Report",
+								"hotels"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Lounge",
+			"item": [
+				{
+					"name": "New Request",
+					"request": {
+						"auth": {
+							"type": "jwt",
+							"jwt": [
+								{
+									"key": "payload",
+									"value": "{}",
+									"type": "string"
+								},
+								{
+									"key": "secret",
+									"value": "",
+									"type": "string"
+								},
+								{
+									"key": "isSecretBase64Encoded",
+									"value": false,
+									"type": "boolean"
+								},
+								{
+									"key": "algorithm",
+									"value": "HS256",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								},
+								{
+									"key": "headerPrefix",
+									"value": "Bearer",
+									"type": "string"
+								},
+								{
+									"key": "queryParamKey",
+									"value": "token",
+									"type": "string"
+								},
+								{
+									"key": "header",
+									"value": "{}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2ODExNmY4OTgxNzFlMTg0ZDQzMmRlNDIiLCJpYXQiOjE3NDc5NjA5MjIsImV4cCI6MTc0Nzk3ODkyMn0.MOEQN4fIJtrR0nmFPdGunNw92GRXx7_gVc6zpXpCUgM",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Salón Invierno\",\r\n    \"hotel\": \"DulceAlegria\",\r\n    \"description\": \"Gran salón para eventos de gran tamaño\",\r\n    \"pricePerHour\": \"1500\",\r\n    \"media\": \"Hola\"   \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/Hotel/V1/Lounges/newLounge",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"Hotel",
+								"V1",
+								"Lounges",
+								"newLounge"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

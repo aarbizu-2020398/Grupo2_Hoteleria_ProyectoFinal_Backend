@@ -13,10 +13,17 @@ const roomSchema = Schema(
         },
         floor: {
             type: Number,
+            required: true
         },
         capacity: {
-            type: String,
+            type: Number,
+            required: true
         }, 
+        comfort:[{
+            comodidades:{
+                type: String
+            }
+        }],
         type: {
             type: String, 
             enum: ["Individual", "Doble", "Suite", "Familiar"],
@@ -24,9 +31,11 @@ const roomSchema = Schema(
         },
         description: {
             type: String,
+            required: true
         }, 
         priceNight: {
             type: Number ,
+            required: true
         },
         availability: [{
                 date:{
@@ -46,6 +55,9 @@ const roomSchema = Schema(
         statusActive:{
             type: Boolean,
             defualt: true
+        },
+        media:{
+            type: String
         }
     },
     {

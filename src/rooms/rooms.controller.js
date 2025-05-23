@@ -7,11 +7,14 @@ export const addRoom = async(req, res) =>{
         
         const data = req.body
 
+        let pictureRoom = req.file ? req.file.filename : null
+
         const findHotel = await Hotel.findOne({nameHotel: data.hotel})
 
         const registRoom = await Room.create({
             ...data,
             hotel: findHotel,
+            media: pictureRoom
         })
         console.log(findHotel)
 
@@ -66,3 +69,44 @@ export const deleteRoom = async(req, res) =>{
         })
     }
 }
+
+export const listRoomsByHotel = async(req, res) => {
+    try {
+        const { hotelName, desde = 0, limite = 50 } = req.query; 
+        const query = { statusActive: true };
+
+        const hotels = await Hotel.find({
+            name: { $regex: hotelName, $options: 'i' },
+            status: true
+        }).select('_id');
+
+        if (hotels.length === 0) {
+            return res.status(404).json({
+                success: false,
+                msg: "No se encontraron hoteles con ese nombre"
+            });
+        }
+
+        const hotelIds = hotels.map(hotel => hotel._id);
+        
+        const [total, rooms] = await Promise.all([
+            Room.countDocuments({ ...query, hotel: { $in: hotelIds } }),
+            Room.find({ ...query, hotel: { $in: hotelIds } })
+                .skip(Number(desde))
+                .limit(Number(limite))
+                .populate('hotel', 'name') 
+        ]);
+
+        return res.status(200).json({
+            success: true,
+            msg: "Habitaciones encontradas con éxito!",
+            total,
+            rooms
+        });
+    } catch (err) {
+        return res.status(500).json({
+            success: false,
+            error: err.message
+        });
+    }
+};

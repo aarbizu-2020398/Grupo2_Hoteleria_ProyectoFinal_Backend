@@ -4,11 +4,14 @@ export const registerHotel = async(req, res) =>{
     try {
         const {nameHotel, address, category, comfort } = req.body
 
+        let pictureHotel = req.file ? req.file.filename : null
+
         const newHotel = await Hotel.create({
             nameHotel: nameHotel,
             address: address,
             category: category,
-            comfort: comfort
+            comfort: comfort,
+            media: pictureHotel
         })
 
         return res.status(200).json({

@@ -16,13 +16,13 @@ const hotelSchema = Schema (
             type: String, 
             required: [true, "Categoty is required"]
         },
-        comfort: {
-            type:String
-        },
         status:{
             type: Boolean,
             defualt: true
         },
+        media:{
+            type: String
+        }
         
     },
     {
