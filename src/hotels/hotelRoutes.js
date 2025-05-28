@@ -1,32 +1,39 @@
 import { Router } from "express";
+import {deleteFileOnError} from "../middlewares/delete-fileOnError.js"
 import { deteleHotelData, findHotel, registerHotel, updateHotelData } from "./hotel.controller.js";
 import { uploadHotelMedia } from "../middlewares/multer-Upload.js";
 import { validateRole } from "../middlewares/validate-Role.js";
+import { valueJWT } from "../middlewares/valueJWT.js";
 
 const router = Router()
 
 router.post(
     "/RegisterHotel",
-    validateRole("ADMIN_HOTEL", "ADMIN_PLATAFORM"),
-    uploadHotelMedia.single("media"),
+    valueJWT,
+    validateRole("ADMIN_PLATAFORM"),
+    uploadHotelMedia.single("pictureHotel"),
+    deleteFileOnError,
     registerHotel
 )
 
 router.put(
     "/UpdateHotel/:id",
-    validateRole("ADMIN_HOTEL", "ADMIN_PLATAFORM"),
+    valueJWT,
+    validateRole("ADMIN_PLATAFORM"),
     updateHotelData
 )
 
 router.delete(
     "/DeleteHotel/:id",
-    validateRole("ADMIN_HOTEL"),
+    valueJWT,
+    validateRole("ADMIN_PLATAFORM"),
     deteleHotelData
 )
 
 router.get(
     "/searchHotels",
-    validateRole("ADMIN_HOTEL", "USER", "ADMIN_PLATAFORM"),
+    valueJWT,
+    validateRole("USER", "ADMIN_PLATAFORM"),
     findHotel
 )
 

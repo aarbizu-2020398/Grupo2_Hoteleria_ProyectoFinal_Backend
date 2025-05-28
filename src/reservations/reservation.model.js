@@ -14,7 +14,8 @@ const reservationSchema = Schema (
         },
         checkInDate: {
             type: Date,
-            require: true
+            require: true,
+            default: Date.now()
         },
         checkOutDate: {
             type: Date,
@@ -23,15 +24,14 @@ const reservationSchema = Schema (
         totalPrice:{
             type: Number
         },
-        guests:{
-            type: Number,
-            required: true,
-            min: 1 
-        },
         status:{
             type: String,
             enum: ["Pending", "Confirmed", "Cancelled"],
             default: "Pending"
+        },
+        statusActive:{
+            type: Boolean,
+            default: true
         }
 },
 {

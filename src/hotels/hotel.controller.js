@@ -14,6 +14,7 @@ export const registerHotel = async(req, res) =>{
             media: pictureHotel
         })
 
+        console.log(pictureHotel)
         return res.status(200).json({
             msg: "Hotel Registrado con exito!",
             newHotel
@@ -69,42 +70,50 @@ export const deteleHotelData = async(req, res) =>{
 }
 
 export const findHotel = async(req, res) =>{
-    try {
-        let {nameHotel, address, comfort, roomPrice, category, sort, startsWith} = req.params
+     try {
+        const { nameHotel } = req.query;
+        const query = {
+            nameHotel: { $regex: nameHotel, $options: 'i' }
+        };
 
-        let filter = {}
-
-        const isStartWith = startsWith === "true"
-
-        if(nameHotel){
-            filter.nameHotel ={
-                $regex: isStartWith ? `${nameHotel}` : nameHotel, $Options: "i"
-            }
-        }
-
-        if(address) filter.address = address
-        if(comfort) filter.comfort = comfort
-        if(roomPrice) filter.address = Number(roomPrice)
-        if(category) filter.category = category
-
-        let order = {}
-        if(sort){
-            order[sort] = sort === "asc" ? 1 : -1
-        }
-
-        if(sort === "asc") order.nameHotel = 1
-        if(sort === "desc") order.nameHotel = -1
-
-        const findHotel = await Hotel.find(filter).sort(order)
+        const [total, hotels] = await Promise.all([
+            Hotel.countDocuments(query),
+            Hotel.find(query).sort({ nameHotel: 1 })
+        ]);
 
         return res.status(200).json({
-            success: true,
-            findHotel
+            succes: true,
+            total,
+            hotels
+        });
+
+    } catch (err) {
+        return res.status(500).json({
+            succes: false,
+            error: err.message
+        });
+    }
+}
+
+export const listAllHotels = async(req, res) =>{
+    try {
+        const query = {status: true}
+        const {desde = 0, limite = 30} = req.query
+        
+        const [total, hotels] = await Promise.all([
+            Hotel.countDocuments(query),
+            Hotel.find(query).skip(Number(desde)).limit(Number(limite))
+        ])
+
+        return res.status(202).json({
+            msg: "Lista de Hoteles",
+            total,
+            hotels
         })
 
     } catch (err) {
         return res.status(500).json({
-            msg: "Error al intentar encontrar los hoteles",
+            success: false,
             error: err.message
         })
     }

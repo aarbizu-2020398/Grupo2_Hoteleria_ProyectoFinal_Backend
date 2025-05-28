@@ -14,8 +14,6 @@ export const login =  async(req, res) =>{
         const user = await User.findOne({
             $or: [{email: lowerEmail}, {username: lowerUsername}]
         })
-
-        console.log(user)
         
         const verPass = await verify(user.password, password)
 
@@ -27,10 +25,11 @@ export const login =  async(req, res) =>{
 
         const token = await jwtUtils(user.id)
 
-        res.status(200).json({
+        return res.status(200).json({
             userDetails:{
                 username: user.username,
-                token: token
+                token: token,
+                role: user.role
             }
         })
 

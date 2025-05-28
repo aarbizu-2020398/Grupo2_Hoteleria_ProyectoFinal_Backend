@@ -4,8 +4,7 @@ const UserSchema = Schema(
     {
         name: {
             type: String,
-            required: [true, "Name is required"],
-            maxLength: [25, "Cant be overcome 25 characters"]
+            required: [true, "Name is required"]
         },
         username: {
             type: String,
@@ -13,24 +12,20 @@ const UserSchema = Schema(
         },
         email: {
             type: String,
-            required: [true, "Email is required"],
-            unique: true
+            required: [true, "Email is required"]
         },
         password: {
             type: String,
-            required: [true, "Password is required"],
-            minLength: 8
+            required: [true, "Password is required"]
         },
         phone: {
             type: String,
-            minLength: 8,
-            maxLength: 8,
             required: true,
         },
         role: {
             type: String,
             required: true,
-            enum: ["ADMIN_PLATAFORM", "ADMIN_HOTEL", "USER"],
+            enum: ["ADMIN_PLATAFORM", "USER"],
             default: "USER",
         },
         status: {

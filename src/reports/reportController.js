@@ -41,9 +41,9 @@ export const getHotelStatistics = async (req, res) => {
             { $limit: 5 }
         ]);
 
-        res.json({ success: true, stats });
+        return res.json({ success: true, stats });
     } catch (error) {
-        res.status(500).json({ success: false, error: error.message });
+        return res.status(500).json({ success: false, error: error.message });
     }
 };
 
