@@ -1,6 +1,6 @@
 import { Router } from "express";
 import {deleteFileOnError} from "../middlewares/delete-fileOnError.js"
-import { deteleHotelData, findHotel, registerHotel, updateHotelData } from "./hotel.controller.js";
+import { deteleHotelData, findHotel, listAllHotels, registerHotel, updateHotelData } from "./hotel.controller.js";
 import { uploadHotelMedia } from "../middlewares/multer-Upload.js";
 import { validateRole } from "../middlewares/validate-Role.js";
 import { valueJWT } from "../middlewares/valueJWT.js";
@@ -35,6 +35,13 @@ router.get(
     valueJWT,
     validateRole("USER", "ADMIN_PLATAFORM"),
     findHotel
+)
+
+router.get(
+    "/listAllHotels",
+    valueJWT,
+    validateRole("USER", "ADMIN_PLATAFORM"),
+    listAllHotels
 )
 
 export default router

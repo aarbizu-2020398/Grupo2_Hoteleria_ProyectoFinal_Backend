@@ -20,6 +20,7 @@ export const registerLounge = async (req, res) => {
         })
 
     } catch (err) {
+        console.error(err)
         return res.status(500).json({
             success: false,
             error: err.message
@@ -95,6 +96,30 @@ export const deleteLounge = async(req, res) =>{
             msg: "Salón eliminado con exito"
         })
 
+    } catch (err) {
+        console.error(err)
+        return res.status(500).json({
+            success: false,
+            error: err.message
+        })
+    }
+}
+
+export const listAllLounges = async(req, res) =>{
+    try {
+        const query = {status: true}
+        const {desde = 0, limite = 30} = req.query
+        
+        const [total, lounges] = await Promise.all([
+            Lounge.countDocuments(query),
+            Lounge.find(query).skip(Number(desde)).limit(Number(limite))
+        ])
+
+        return res.status(202).json({
+            msg: "Lista de Hoteles",
+            total,
+            lounges
+        })
     } catch (err) {
         console.error(err)
         return res.status(500).json({

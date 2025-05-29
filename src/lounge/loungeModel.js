@@ -20,8 +20,7 @@ const modelLounge = new Schema({
     },
     statusActive:{
         type: String,
-        enum:["Active, Ocuppied, Pending"],
-        defautl: "Active"
+        default: "Active"
     },
     status:{
         type: Boolean,

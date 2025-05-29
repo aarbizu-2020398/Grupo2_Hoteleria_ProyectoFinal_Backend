@@ -127,3 +127,49 @@ export const deleteServices = async(req, res) =>{
         })
     }
 }
+
+export const listServices = async(req, res) =>{
+    try {
+        const query = {statusActive: true}
+        const {desde = 0, limite = 30} = req.query
+                
+        const [total, services] = await Promise.all([
+            Services.countDocuments(query),
+            Services.find(query).skip(Number(desde)).limit(Number(limite))
+        ])
+        
+        return res.status(202).json({
+            msg: "Lista de Servicios",
+            total,
+            services
+        })
+    } catch (err) {
+        return res.status(500).json({
+            success: false,
+            error: err.message
+        })
+    }
+}
+
+export const listResources = async(req, res) =>{
+    try {
+        const query = {isActive: true}
+        const {desde = 0, limite = 30} = req.query
+                
+        const [total, resources] = await Promise.all([
+            Resources.countDocuments(query),
+            Resources.find(query).skip(Number(desde)).limit(Number(limite))
+        ])  
+        
+        return res.status(202).json({
+            msg: "Lista de Servicios",
+            total,
+            resources
+        })
+    } catch (err) {
+        return res.status(500).json({
+            success: false,
+            error: err.message
+        })
+    }
+}

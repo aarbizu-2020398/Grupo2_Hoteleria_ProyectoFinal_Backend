@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { addResources, addServices, deleteResources, deleteServices, editResources, editServices } from "./resourcesController.js";
+import { addResources, listResources, addServices, deleteResources, deleteServices, editResources, editServices, listServices } from "./resourcesController.js";
 import { valueJWT } from "../middlewares/valueJWT.js";
 import { validateRole } from "../middlewares/validate-Role.js";
 
@@ -10,6 +10,20 @@ router.post(
     valueJWT,
     validateRole("ADMIN_PLATAFORM"),
     addServices
+)
+
+router.get(
+    "/listServices",
+    valueJWT,
+    validateRole("ADMIN_PLATAFORM"),
+    listServices
+)
+
+router.get(
+    "/listResources",
+    valueJWT,
+    validateRole("ADMIN_PLATAFORM"),
+    listResources
 )
 
 router.post(

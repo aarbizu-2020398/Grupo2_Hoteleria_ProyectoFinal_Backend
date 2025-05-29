@@ -16,7 +16,6 @@ export const addRoom = async(req, res) =>{
             hotel: findHotel,
             media: pictureRoom
         })
-        console.log(findHotel)
 
         return res.status(200).json({
             msg: "Cuarto añadido con exito!",
@@ -24,6 +23,7 @@ export const addRoom = async(req, res) =>{
         })
 
     } catch (err) {
+        console.error(err)
         return res.status(500).json({
             msg: "Error al Añadir el cuarto",
             error: err.message
@@ -110,3 +110,26 @@ export const listRoomsByHotel = async(req, res) => {
         });
     }
 };
+
+export const listAllRooms = async(req, res) =>{
+    try {
+        const query = {statusActive: true}
+        const {desde = 0, limite = 30} = req.query
+        
+        const [total, rooms] = await Promise.all([
+            Room.countDocuments(query),
+            Room.find(query).skip(Number(desde)).limit(Number(limite))
+        ])
+
+        return res.status(202).json({
+            msg: "Lista de Hoteles",
+            total,
+            rooms
+        })
+    } catch (err) {
+        return res.status(500).json({
+            success: false,
+            error: err.message
+        })
+    }
+}

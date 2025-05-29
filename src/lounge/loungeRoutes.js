@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { deleteLounge, editLounge, listLoungesByHotel, registerLounge } from "./loungeController.js";
+import { deleteLounge, listAllLounges, editLounge, listLoungesByHotel, registerLounge } from "./loungeController.js";
 import { uploadLounge } from "../middlewares/multer-Upload.js";
 import { validateRole } from "../middlewares/validate-Role.js";
 import { valueJWT } from "../middlewares/valueJWT.js"
@@ -10,7 +10,7 @@ router.post(
     "/newLounge",
     valueJWT,
     validateRole("ADMIN_HOTEL", "ADMIN_PLATAFORM"),
-    uploadLounge.single("mediaLounge"),
+    uploadLounge.single("pictureLounge"),
     registerLounge
 )
 
@@ -24,6 +24,13 @@ router.get(
     "/",
     validateRole("ADMIN_HOTEL", "ADMIN_PLATAFORM", "USER"),
     listLoungesByHotel
+)
+
+router.get(
+    "/listAllLounges",
+    valueJWT,
+    validateRole("ADMIN_HOTEL", "ADMIN_PLATAFORM", "USER"),
+    listAllLounges
 )
 
 router.delete(

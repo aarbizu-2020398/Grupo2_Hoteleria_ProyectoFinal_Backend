@@ -2,7 +2,7 @@ import Hotel from "./hotel.model.js";
 
 export const registerHotel = async(req, res) =>{
     try {
-        const {nameHotel, address, category, comfort } = req.body
+        const {nameHotel, address, category, comfort, description} = req.body
 
         let pictureHotel = req.file ? req.file.filename : null
 
@@ -11,7 +11,8 @@ export const registerHotel = async(req, res) =>{
             address: address,
             category: category,
             comfort: comfort,
-            media: pictureHotel
+            media: pictureHotel,
+            description: description
         })
 
         console.log(pictureHotel)

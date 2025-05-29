@@ -22,8 +22,15 @@ const hotelSchema = Schema (
         },
         media:{
             type: String
+        },
+        status:{
+            type: Boolean,
+            default: true
+        },
+        description:{
+            type: String,
+            required: true
         }
-        
     },
     {
         timestamps: true, 
