@@ -8,7 +8,7 @@ const router = Router()
 router.post(
     '/newEvent',
     valueJWT,
-    createEventValidator,
+    
     createEvent
 )
 
