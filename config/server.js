@@ -12,6 +12,7 @@ import resourcesRoutes from "../src/resources_Events/resourcesRoutes.js"
 import loungeRoutes from "../src/lounge/loungeRoutes.js"
 import reportRoutes from "../src/reports/reportRoutes.js"
 import reservationRoutes from "../src/reservations/reservationRoutes.js"
+import userRoutes from "../src/users/user.routes.js"
 import { dbConnection } from "./mongo.js"
 
 import User from "../src/users/user.model.js"
@@ -44,6 +45,7 @@ const routes = (app) =>{
     app.use("/Hotel/V1/Lounges", loungeRoutes)
     app.use("/Hotel/V1/Report", reportRoutes)
     app.use("/Hotel/V1/Reservation", reservationRoutes)
+    app.use("/Hotel/V1/User", userRoutes)
     app.use('/uploads/Hotel_Media', express.static(path.join(__dirname, '../src/public/uploads/Hotel_Media')));
     app.use('/uploads/Lounge_Media', express.static(path.join(__dirname, '../src/public/uploads/Lounge_Media')));
     app.use('/uploads/Room_Media', express.static(path.join(__dirname, '../src/public/uploads/Room_Media')));
